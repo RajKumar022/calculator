@@ -1,47 +1,57 @@
-// Function display
+// Append value to the display
 function appendToDisplay(value) {
-    document.getElementById('display').value += value;
+    var display = document.getElementById('display');
+    display.value += value;
 }
 
-function fact() {
-   let num = parseInt(display.value);
-    if (num < 0) {
-        display.value = 'Error';
-        return;
-    }
-   let factorial = 1;
-    for (let i = 1; i <= num; i++) {
-        factorial *= i;
-    }
-    display.value = factorial;
-}
-
-function squareRoot() {
-    display.value = Math.sqrt(display.value);
-}
-
-function per() {
-   let num = parseFloat(display.value);
-    if (!letaN(num)) {
-        display.value = num / 100;
-    }
-}
-function pi() {
-    display.value = Math.PI;
-}
-
-// Function  calculate the result
-function calculate() {
-    try {
-        document.getElementById('display').value = eval(document.getElementById('display').value);
-    } catch (error) {
-        document.getElementById('display').value = 'Error';
-    }
-}
+// Clear the display
 function clearDisplay() {
     document.getElementById('display').value = '';
 }
+
+// Delete the last character from the display
 function deleteLast() {
-   let display = document.getElementById('display');
-    displletvalue = display.value.slice(0, -1);
+    var display = document.getElementById('display');
+    display.value = display.value.slice(0, -1);
+}
+
+// Calculate the percentage
+function per() {
+    var display = document.getElementById('display');
+    display.value = eval(display.value) / 100;
+}
+
+// Calculate the square root
+function squareRoot() {
+    var display = document.getElementById('display');
+    display.value = Math.sqrt(eval(display.value));
+}
+
+// Insert the value of Pi
+function pi() {
+    var display = document.getElementById('display');
+    display.value += Math.PI;
+}
+
+// Calculate the factorial
+function fact() {
+    var display = document.getElementById('display');
+    var number = eval(display.value);
+    display.value = factorial(number);
+}
+
+// Helper function to calculate factorial
+function factorial(n) {
+    if (n === 0 || n === 1) return 1;
+    return n * factorial(n - 1);
+}
+
+// Evaluate the expression in the display
+function calculate() {
+    var display = document.getElementById('display');
+    try {
+        display.value = eval(display.value);
+    } catch (error) {
+        display.value = 'Error';
+    }
 }
